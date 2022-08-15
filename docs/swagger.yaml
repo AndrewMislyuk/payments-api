@@ -1,0 +1,64 @@
+basePath: /
+definitions:
+  domain.Product:
+    properties:
+      id:
+        type: string
+    type: object
+  handler.errorResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  handler.getSubscribeURL:
+    properties:
+      url:
+        type: string
+    type: object
+host: localhost:3000
+info:
+  contact: {}
+  description: API for frontend cliend
+  title: API Product Subscription
+  version: "1.0"
+paths:
+  /api/subscribe:
+    post:
+      consumes:
+      - application/json
+      description: product-subscribe
+      operationId: product-subscribe
+      parameters:
+      - description: Product ID
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Product'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.getSubscribeURL'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: Product Subscribe
+      tags:
+      - Subscribe
+swagger: "2.0"
