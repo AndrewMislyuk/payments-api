@@ -4,6 +4,8 @@ definitions:
     properties:
       id:
         type: string
+    required:
+    - id
     type: object
   handler.errorResponse:
     properties:

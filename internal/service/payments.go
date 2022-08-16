@@ -22,7 +22,7 @@ func (p *Payment) ProductSubscription(productId string) (string, error) {
 	}
 	
 	c := make(chan string)
-	go p.methodStripe.GetPaymentURL(c)
+	go p.methodStripe.GetPaymentURL(productId, c)
 	url := <-c
 
 	return url, nil

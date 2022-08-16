@@ -79,6 +79,9 @@ const docTemplate = `{
     "definitions": {
         "domain.Product": {
             "type": "object",
+            "required": [
+                "id"
+            ],
             "properties": {
                 "id": {
                     "type": "string"

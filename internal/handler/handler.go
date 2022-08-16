@@ -2,6 +2,7 @@ package handler
 
 import (
 	_ "github.com/AndrewMislyuk/payments-api/docs"
+	"github.com/AndrewMislyuk/payments-api/internal/handler/middlewares"
 	"github.com/AndrewMislyuk/payments-api/internal/service"
 	"github.com/gin-gonic/gin"
 	swaggerfiles "github.com/swaggo/files"
@@ -29,6 +30,14 @@ func (h *Handler) InitRouter() *gin.Engine {
 
 	api := router.Group("/api")
 	{
+		// X-Response-Time Middleware
+		api.Use(middlewares.NewXResponseTimer)
+		// X-Server-Name
+		api.Use(middlewares.NewXServerName)
+		api.Use(func(ctx *gin.Context) {
+			ctx.Next()
+		})
+
 		api.POST("/subscribe", h.productSubscribe)
 	}
 

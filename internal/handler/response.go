@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"log"
+	"fmt"
 
 	"github.com/gin-gonic/gin"
 )
@@ -11,6 +11,6 @@ type errorResponse struct {
 }
 
 func newErrorResponse(c *gin.Context, statusCode int, message string) {
-	log.Fatal(message)
+	fmt.Println(message)
 	c.AbortWithStatusJSON(statusCode, errorResponse{Message: message})
 }
